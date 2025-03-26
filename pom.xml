@@ -9,31 +9,29 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Calculator</name>
-    <description>A simple calculator web application</description>
-
     <dependencies>
-        <!-- Jackson Databind (for JSON processing) -->
+        <!-- JUnit Jupiter API for JUnit 5 -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.12.5</version> <!-- Use the version that suits your project -->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
         </dependency>
 
-        <!-- Jackson Dataformat YAML (for YAML processing) -->
+        <!-- JUnit Jupiter Engine for running tests -->
         <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>2.12.5</version> <!-- Use the version that suits your project -->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
         </dependency>
 
-        <!-- Other existing dependencies you may have (like servlet-api, etc.) -->
-        <!-- For example: -->
+        <!-- JUnit Jupiter Params for parameterized tests -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -45,21 +43,23 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
 
-            <!-- Maven WAR Plugin -->
+            <!-- Maven Surefire Plugin for running tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.1</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version> <!-- Use the latest version -->
                 <configuration>
-                    <webAppDirectory>${project.build.directory}/webapp</webAppDirectory>
+                    <dependenciesToScan>
+                        <dependency>org.junit.jupiter</dependency>
+                    </dependenciesToScan>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
-
 </project>
